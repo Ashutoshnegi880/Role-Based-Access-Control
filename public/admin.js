@@ -1,0 +1,83 @@
+async function fetchBlogs() {
+  const res = await fetch("/api/blogs", {
+    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+  });
+  const blogs = await res.json();
+  loadBlogs(blogs);
+}
+
+document
+  .getElementById("createPostForm")
+  .addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const res = await fetch("/api/blogs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        title: document.getElementById("title").value,
+        content: document.getElementById("content").value,
+      }),
+    });
+    if (res.ok) {
+      fetchBlogs();
+    } else {
+      alert("Error creating post");
+    }
+  });
+
+async function deletePost(id) {
+  const res = await fetch(`/api/blogs/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+  });
+  if (res.ok) {
+    fetchBlogs();
+  } else {
+    alert("Error deleting post");
+  }
+}
+
+function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+}
+
+fetchBlogs();
+
+// Load blogs
+function loadBlogs(blogs) {
+  const container = document.getElementById("blogs-container");
+  blogs.forEach((blog) => {
+    const blogCard = document.createElement("div");
+    blogCard.classList.add("blog-card");
+    blogCard.innerHTML = `
+<h3>${blog.title}</h3>
+<p>${truncateContent(blog.content, 200)}</p> 
+`;
+    blogCard.addEventListener("click", () => openPopup(blog));
+    container.appendChild(blogCard);
+  });
+}
+
+// Truncate content and add elipsis to the post content
+function truncateContent(content, maxLength) {
+  if (content.length <= maxLength) {
+    return content;
+  }
+  return content.substring(0, maxLength) + "...";
+}
+
+// Open popup
+function openPopup(blog) {
+  document.getElementById("popup-title").innerText = blog.title;
+  document.getElementById("popup-body").innerText = blog.content;
+  document.getElementById("popup").style.display = "flex";
+}
+
+// Close popup
+document.getElementById("close-popup").addEventListener("click", () => {
+  document.getElementById("popup").style.display = "none";
+});

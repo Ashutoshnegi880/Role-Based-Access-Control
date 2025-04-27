@@ -7,7 +7,12 @@
   </head>
   <body>
     <div class="navbar">
-      <h1>Blog Platform</h1>
+      <!-- <h1>LiaPlus Blogs</h1> -->
+      <img
+        src="./img/LiaPlus-Ai-Logo-3-1024x254.png"
+        height="auto"
+        width="150px"
+      />
       <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 
@@ -30,133 +35,19 @@
 
     <h3>All Posts</h3>
     <div id="blogs">
-        <div class="blogs-container" id="blogs-container">
-      <!-- Blog cards will be inserted here dynamically -->
-    </div>
+      <div class="blogs-container" id="blogs-container">
+        <!-- Blog cards will be inserted here dynamically -->
+      </div>
 
-    <!-- Popup Modal -->
-    <div id="popup" class="popup-overlay" style="display: none">
-      <div class="popup-content">
-        <span id="close-popup" class="close-btn">&times;</span>
-        <h2 id="popup-title"></h2>
-        <p id="popup-body"></p>
+      <!-- Popup Modal -->
+      <div id="popup" class="popup-overlay" style="display: none">
+        <div class="popup-content">
+          <span id="close-popup" class="close-btn">&times;</span>
+          <h2 id="popup-title"></h2>
+          <p id="popup-body"></p>
+        </div>
       </div>
     </div>
-
-    </div>
-
-    <script>
-      async function fetchBlogs() {
-        const res = await fetch("/api/blogs", {
-          headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-        });
-        const blogs = await res.json();
-    //     const container = document.getElementById("blogs");
-    //     container.innerHTML = blogs
-    //       .map(
-    //         (b) => `
-    //     <div>
-    //       <h3>${b.title}</h3>
-    //       <p>${b.content}</p>
-    //       <small>By: ${b.author}</small><br>
-    //       <button onclick="deletePost(${b.id})">Delete</button>
-    //     </div><hr>
-    //   `
-    //       )
-    //       .join("");
-    loadBlogs(blogs)
-      }
-
-      document
-        .getElementById("createPostForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const res = await fetch("/api/blogs", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-            body: JSON.stringify({
-              title: document.getElementById("title").value,
-              content: document.getElementById("content").value,
-            }),
-          });
-          if (res.ok) {
-            fetchBlogs();
-          } else {
-            alert("Error creating post");
-          }
-        });
-
-      async function deletePost(id) {
-        const res = await fetch(`/api/blogs/${id}`, {
-          method: "DELETE",
-          headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-        });
-        if (res.ok) {
-          fetchBlogs();
-        } else {
-          alert("Error deleting post");
-        }
-      }
-
-      function logout() {
-        localStorage.removeItem("token");
-        window.location.href = "login.html";
-      }
-
-      fetchBlogs();
-
-    //   const blogs = [
-    //     {
-    //       id: 1,
-    //       title: "First Blog Post",
-    //       content:
-    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut orci vel massa efficitur lacinia. Integer ac odio nec quam malesuada vulputate. Vestibulum nec justo nec velit suscipit pharetra...",
-    //     },
-    //     {
-    //       id: 2,
-    //       title: "Second Blog Post",
-    //       content:
-    //         "Curabitur posuere, justo a sollicitudin pulvinar, metus diam pretium orci, nec tincidunt massa leo vitae justo. Proin vulputate augue nec diam convallis, sed viverra ligula interdum...",
-    //     },
-    //   ];
-
-      // Load blogs
-      function loadBlogs(blogs) {
-        const container = document.getElementById("blogs-container");
-        blogs.forEach((blog) => {
-          const blogCard = document.createElement("div");
-          blogCard.classList.add("blog-card");
-          blogCard.innerHTML = `
-      <h3>${blog.title}</h3>
-      <p>${truncateContent(blog.content, 200)}</p>
-    `;
-          blogCard.addEventListener("click", () => openPopup(blog));
-          container.appendChild(blogCard);
-        });
-      }
-
-      // Truncate content
-      function truncateContent(content, maxLength) {
-        if (content.length <= maxLength) {
-          return content;
-        }
-        return content.substring(0, maxLength) + "...";
-      }
-
-      // Open popup
-      function openPopup(blog) {
-        document.getElementById("popup-title").innerText = blog.title;
-        document.getElementById("popup-body").innerText = blog.content;
-        document.getElementById("popup").style.display = "flex";
-      }
-
-      // Close popup
-      document.getElementById("close-popup").addEventListener("click", () => {
-        document.getElementById("popup").style.display = "none";
-      });
-    </script>
+    <script src="./admin.js"></script>
   </body>
 </html>

@@ -9,32 +9,24 @@
 
 <body>
   <div class="navbar">
-    <h1>Blog Platform</h1>
+     <img src="./img/LiaPlus-Ai-Logo-3-1024x254.png" height="auto" width="150px">
     <button class="logout-btn" onclick="logout()">Logout</button>
   </div>
 
   <h2>Blog Posts</h2>
-  <div id="blogs"></div>
+  <div id="blogs">
+    <div class="blogs-container" id="blogs-container">
+      <!-- Blog cards will be inserted here dynamically -->
+    </div>
 
-  <script>
-    async function fetchBlogs() {
-      const res = await fetch('/api/blogs', {
-        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
-      });
-      const blogs = await res.json();
-      const container = document.getElementById('blogs');
-      container.innerHTML = blogs.map(b => `
-        <div><h3>${b.title}</h3><p>${b.content}</p><small>By: ${b.author}</small></div><hr>
-      `).join('');
-    }
-
-    function logout() {
-      localStorage.removeItem('token');
-      window.location.href = 'login.html';
-    }
-
-    fetchBlogs();
-  </script>
+    <!-- Popup Modal to show vlogs-->
+    <div id="popup" class="popup-overlay" style="display: none">
+      <div class="popup-content">
+        <span id="close-popup" class="close-btn">&times;</span>
+        <h2 id="popup-title"></h2>
+        <p id="popup-body"></p>
+      </div>
+  </div>
+  <script src="./blogs.js"></script>
 </body>
-
 </html>
