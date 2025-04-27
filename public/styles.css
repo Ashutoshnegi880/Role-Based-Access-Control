@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f0ff;
+    color: #333;
+}
+
+.navbar {
+    background-color: #6a0dad;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.logout-btn {
+    background-color: #fff;
+    color: #6a0dad;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #6a0dad;
+    color: white;
+}
+
+#create-blog-form{
+    width: 500px;
+    background-color: #f7f7f7;
+    justify-self: center;
+    justify-items: center;
+    padding: 8px;
+}
+#create-blog-form h4{
+    margin: 0px;
+}
+
+.form-container {
+    margin: 50px auto;
+    max-width: 400px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(106, 13, 173, 0.2);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #6a0dad;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#createPostForm{
+    width: 90%;
+    text-align: center;
+}
+
+#createPostForm input, textarea {
+    width: 90%;
+}
+
+button[type="submit"] {
+    width: 90%;
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #5800a8;
+}
+
+.blogs-container {
+    margin: 30px auto;
+    max-width: 800px;
+}
+
+.blog-card {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-left: 5px solid #6a0dad;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(106, 13, 173, 0.2);
+}
+
+.blog-card h3 {
+    margin-top: 0;
+    color: #6a0dad;
+}
+
+.blog-card p {
+    color: #555;
+}
+
+
+/* Popup Modal Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(106, 13, 173, 0.5);
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #6a0dad;
+  }
+  
