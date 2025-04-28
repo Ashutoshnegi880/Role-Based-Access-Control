@@ -1,7 +1,7 @@
 # Role-Based Access Control (RBAC) Blog Platform
 
 A secure blog application implementing **Role-Based Access Control (RBAC)**, where different users have different permissions (e.g., Admins and Users).  
-Admins can create, update, delete blogs, while Users can only view them.
+Admins can create and delete blogs, while Users can only view them.
 
 The project uses:
 - **Node.js** with **Express.js** for backend
