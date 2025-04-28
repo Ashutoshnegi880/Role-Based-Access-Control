@@ -32,6 +32,9 @@ document
       }),
     });
     if (res.ok) {
+      document.getElementById("title").value = "",
+      document.getElementById("content").value = "",
+      alert("Blog created");
       fetchBlogs();
     } else {
       alert("Error creating post");

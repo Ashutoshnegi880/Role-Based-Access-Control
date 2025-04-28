@@ -8,13 +8,15 @@
 </head>
 
 <body>
-  <div class="navbar">
+  <div class="navbar" style="height: 37.2px;">
      <img src="./img/LiaPlus-Ai-Logo-3-1024x254.png" height="auto" width="150px">
-    <button class="logout-btn" onclick="logout()">Logout</button>
+     <div id="blog-page-navbar-buttons">
+       <button class="logout-btn" onclick="logout()">Logout</button>
+     </div>
   </div>
 
-  <h2>Blog Posts</h2>
   <div id="blogs">
+    <h2 style="margin-left: 364px;">Blog Posts</h2>
     <div class="blogs-container" id="blogs-container">
       <!-- Blog cards will be inserted here dynamically -->
     </div>

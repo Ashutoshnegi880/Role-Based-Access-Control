@@ -87,6 +87,17 @@ async function verifyUserUsingToken() {
 
     const data = await res.json();
     if(data){
+      if(data.role == "admin"){
+        const navbarButtons = document.getElementById("blog-page-navbar-buttons");
+        navbarButtons.innerHTML = `
+        <p id="admin-dash-button">Admin</p>
+        ${navbarButtons.innerHTML}
+        `;
+
+        document.getElementById("admin-dash-button").addEventListener("click", ()=>{
+          window.location.href = "admin";
+        });
+      }
       await fetchBlogs();
       return;
     }

@@ -6,17 +6,18 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="navbar">
+    <div class="navbar" style="height: 37.2px;">
       <!-- <h1>LiaPlus Blogs</h1> -->
-      <img
-        src="./img/LiaPlus-Ai-Logo-3-1024x254.png"
-        height="auto"
-        width="150px"
-      />
+       <div style="display: flex; align-items: center; width: 500px;">
+         <img
+           src="./img/LiaPlus-Ai-Logo-3-1024x254.png"
+           height="auto"
+           width="150px"
+         />    
+         <span style="width: 30px;"> </span><h2>Admin Dashboard</h2>
+       </div>
       <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
-
-    <h2>Admin Dashboard</h2>
 
     <div id="create-blog-form">
       <h4>Create Blog Post</h4>
@@ -32,9 +33,9 @@
         <button type="submit">Create Post</button>
       </form>
     </div>
-
-    <h3>All Blogs</h3>
+    <hr>
     <div id="blogs">
+      <h3 style="margin-left: 362px;">All Blogs</h3>
       <div class="blogs-container" id="blogs-container">
         <!-- Blog cards will be inserted here dynamically -->
       </div>
