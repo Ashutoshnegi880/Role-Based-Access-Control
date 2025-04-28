@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 
-const authRoutes = require("./userRoutes");
+const userRoutes = require("./userRoutes");
 const blogRoutes = require("./blogRoutes");
 
 const clientPath = path.join(__dirname, "../public");
@@ -21,7 +21,7 @@ router.get("/blogs", (req, res) => res.sendFile(clientPath + "/blogs.html"));
 // Admin dashboard page
 router.get("/admin", (req, res) => res.sendFile(clientPath + "/admin.html"));
 
-router.use("/api/auth", authRoutes);
+router.use("/api/auth", userRoutes);
 router.use("/api/blogs", blogRoutes);
 
 module.exports = router;

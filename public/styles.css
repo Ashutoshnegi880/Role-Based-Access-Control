@@ -153,3 +153,11 @@ button[type="submit"]:hover {
     cursor: pointer;
     color: #6a0dad;
 }
+
+.delete-blog{
+    cursor: pointer;
+    background-color: #6a0dad;
+    color: white;
+    border-radius: 5px;
+    padding: 6px;
+}
