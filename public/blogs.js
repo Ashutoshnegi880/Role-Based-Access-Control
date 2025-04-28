@@ -1,19 +1,29 @@
+/**
+ * @description: Function to fetch the blogs
+ */
 async function fetchBlogs() {
-  const res = await fetch("/api/blogs", {
-    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-  });
-  const blogs = await res.json();
-  loadBlogs(blogs);
+  try {
+    const res = await fetch("/api/blogs", {
+      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    });
+    const blogs = await res.json();
+    loadBlogs(blogs);
+  } catch (error) {
+    alert("Error fetching the blogs")
+  }
 }
 
+/**
+ * @description: Function to logout the current user
+ */
 function logout() {
   localStorage.removeItem("token");
-  window.location.href = "login.html";
+  window.location.href = "login";
 }
 
-fetchBlogs();
-
-// Load blogs
+/**
+ * @description: Function to load the fetched blogs
+ */
 function loadBlogs(blogs) {
   const container = document.getElementById("blogs-container");
   blogs.forEach((blog) => {
@@ -52,6 +62,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   await verifyUserUsingToken(); // Check if user token is valid when blog pages load
 });
 
+/**
+ * @description: Function to verify the user token and validate the user session
+ */
 async function verifyUserUsingToken() {
   const token = localStorage.getItem("token");
 
@@ -74,6 +87,7 @@ async function verifyUserUsingToken() {
 
     const data = await res.json();
     if(data){
+      await fetchBlogs();
       return;
     }
   } catch (error) {

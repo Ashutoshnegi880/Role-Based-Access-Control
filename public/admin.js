@@ -1,11 +1,21 @@
+/**
+ * @description: function to fetch all blogs
+ */
 async function fetchBlogs() {
-  const res = await fetch("/api/blogs", {
-    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-  });
-  const blogs = await res.json();
-  loadBlogs(blogs);
+  try {
+    const res = await fetch("/api/blogs", {
+      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    });
+    const blogs = await res.json();
+    loadBlogs(blogs);
+  } catch (error) {
+    alert("Error fetching the blogs")
+  }
 }
 
+/**
+ * @description: function to submit the blogs
+ */
 document
   .getElementById("createPostForm")
   .addEventListener("submit", async (e) => {
@@ -28,32 +38,41 @@ document
     }
   });
 
+/**
+ * @description: function to delete the blogs
+ */
 async function deletePost(id, event) {
   event.stopPropagation();
-  
+
   // Confirm if admin wants to delete this for sure.
   const confirmation = confirm("Are you sure you want to delete this blog post?");
   if (!confirmation) {
     return; 
   }
-
+  // Delete the post after confirming
   const res = await fetch(`/api/blogs/${id}`, {
     method: "DELETE",
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   });
   if (res.ok) {
+    // Fetch all the blogs after deleting
     fetchBlogs();
   } else {
     alert("Error deleting post");
   }
 }
 
+/**
+ * @description: Function to logout
+ */
 function logout() {
   localStorage.removeItem("token");
-  window.location.href = "login.html";
+  window.location.href = "login";
 }
 
-// Load blogs
+/**
+ * @description: Function to load blogs and show them on admin dashboard
+ */
 function loadBlogs(blogs) {
   const container = document.getElementById("blogs-container");
   container.innerHTML = "";
@@ -94,6 +113,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   await verifyUserUsingToken(); // Check if user is admin, when page loads
 });
 
+/**
+ * @description: Function to verify the user token and check if user is admin
+ */
 async function verifyUserUsingToken() {
   const token = localStorage.getItem("token");
 

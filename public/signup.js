@@ -11,7 +11,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   });
   if (res.ok) {
     alert("Signup Successful");
-    window.location.href = "login.html";
+    window.location.href = "login";
   } else {
     alert("Signup Failed");
   }
