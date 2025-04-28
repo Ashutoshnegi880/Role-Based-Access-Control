@@ -12,7 +12,7 @@ CREATE TABLE users (
   role VARCHAR(10) DEFAULT 'user' -- user, admin
 );
 
-CREATE TABLE posts (
+CREATE TABLE blogs (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255),
   content TEXT,
