@@ -7,6 +7,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       name: document.getElementById("name").value,
       email: document.getElementById("email").value,
       password: document.getElementById("password").value,
+      role: document.getElementById("role").value,
     }),
   });
   if (res.ok) {
